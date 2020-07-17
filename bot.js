@@ -5,8 +5,8 @@ const tmi = require('tmi.js');
 
 const opts = {
   identity: {
-    username: 'bart3s',
-    password: 'oauth:bf2i9nu8h1jae3eehziqvl7bja8kxv'
+    username: 'bart3sbot',
+    password: 'oauth:lm3ffflgrzrhibyf8zlmkixzip0ink'
   },
   channels: [
     'bart3s'
@@ -27,7 +27,7 @@ function onMessageHandler (target, context, msg, self) {
   if (commandName.startsWith("!tts ")) {
     name = context['display-name']
     message = commandName.substring(5)
-    if (message.startsWith('david: ') || message.startsWith('neil: ')) {
+    if (message.startsWith('david:') || message.startsWith('neil:')) {
       client.say(target, `${name} your message is added to the queue.`);
       username = context.username
       socket.emit('message', {username, message});
