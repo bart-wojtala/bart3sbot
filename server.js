@@ -12,10 +12,10 @@ server.listen(port, () => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
-  socket.on('new message', (data) => {
-    socket.broadcast.emit('new message', {
-      username: socket.username,
-      message: data
+  socket.on('message', (data) => {
+    socket.broadcast.emit('message', {
+      username: data['username'],
+      message: data['message']
     });
   });
 });
