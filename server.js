@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
   socket.on('message', (data) => {
-    socket.broadcast.emit('message', {
+    socket.broadcast.emit('event', {
       username: data['username'],
       message: data['message']
     });
