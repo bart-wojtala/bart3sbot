@@ -44,11 +44,12 @@ function onMessageHandler (target, context, msg, self) {
   const commandName = msg.trim();
 
   if (commandName.startsWith("!tts ")) {
-    message = commandName.substring(4)
+    message = commandName.substring(5)
     if (message.startsWith('david: ') || message.startsWith('neil: ')) {
-      client.say(target, `${context['display-name']} your message is added to the queue.`);
+      name = context['display-name']
+      client.say(target, `${name} your message is added to the queue.`);
     } else {
-      client.say(target, `${context['display-name']} wrong message format!`);
+      client.say(target, `${name} wrong message format!`);
     }
   }
 }
