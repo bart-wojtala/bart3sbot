@@ -1,0 +1,19 @@
+{
+  "name": "bart3sbot",
+  "version": "1.0.0",
+  "description": "bart3sbot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bart-wojtala/bart3sbot.git"
+  },
+  "author": "bart-wojtala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bart-wojtala/bart3sbot/issues"
+  },
+  "homepage": "https://github.com/bart-wojtala/bart3sbot#readme"
+}
