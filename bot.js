@@ -27,7 +27,7 @@ function onMessageHandler (target, context, msg, self) {
   if (commandName.startsWith("!tts ")) {
     name = context['display-name']
     message = commandName.substring(5)
-    if (message.startsWith('david:') || message.startsWith('neil:')) {
+    if (message.startsWith('david: ') || message.startsWith('neil: ')) {
       client.say(target, `${name} your message is added to the queue.`);
       username = context.username
       socket.emit('message', {username, message});
