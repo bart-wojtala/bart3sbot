@@ -48,6 +48,8 @@ function onMessageHandler (target, context, msg, self) {
     message = commandName.substring(5)
     if (message.startsWith('david: ') || message.startsWith('neil: ')) {
       client.say(target, `${name} your message is added to the queue.`);
+    } else if (message.length > 255) {
+      client.say(target, `${name} message too long!`);
     } else {
       client.say(target, `${name} wrong message format!`);
     }
