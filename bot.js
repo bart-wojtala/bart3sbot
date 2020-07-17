@@ -1,3 +1,6 @@
+var io = require("socket.io-client")
+var socket = io.connect("http://localhost:3000");
+
 const tmi = require('tmi.js');
 
 const opts = {
@@ -26,6 +29,8 @@ function onMessageHandler (target, context, msg, self) {
     message = commandName.substring(5)
     if (message.startsWith('david: ') || message.startsWith('neil: ')) {
       client.say(target, `${name} your message is added to the queue.`);
+      username = context.username
+      socket.emit('message', {username, message});
     } else if (message.length > 255) {
       client.say(target, `${name} message too long!`);
     } else {
