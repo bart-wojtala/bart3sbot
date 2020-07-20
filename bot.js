@@ -36,6 +36,8 @@ function onMessageHandler (target, context, msg, self) {
     } else {
       client.say(target, `${name} wrong message format!`);
     }
+  } else if (commandName.startsWith("!help")) {
+    client.say(target, "Maximum message length is 255 characters. Example  --  !tts david: Get out of that uh, jabroni outfit. neil: Yeah, smart ass.");
   }
 }
 
