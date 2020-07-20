@@ -27,14 +27,13 @@ function onMessageHandler (target, context, msg, self) {
   if (commandName.startsWith("!tts ")) {
     name = context['display-name']
     message = commandName.substring(5)
-    if (message.startsWith('david: ') || message.startsWith('neil: ')) {
+    messageLength = message.length
+    if (messageLength > 255) {
+      client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+    } else {
       client.say(target, `${name} your message is added to the queue.`);
       username = context.username
       socket.emit('message', {username, message});
-    } else if (message.length > 255) {
-      client.say(target, `${name} message too long!`);
-    } else {
-      client.say(target, `${name} wrong message format!`);
     }
   } else if (commandName.startsWith("!help")) {
     client.say(target, "Maximum message length is 255 characters. Example  --  !tts david: Get out of that uh, jabroni outfit. neil: Yeah, smart ass.");
