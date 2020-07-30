@@ -35,10 +35,10 @@ function onMessageHandler (target, context, msg, self) {
       username = context.username
       socket.emit('message', {username, message});
     }
-  } else if (commandName.startsWith("!help")) {
-    client.say(target, "Maximum message length is 255 characters. Example  --  !tts david: Get out of that uh, jabroni outfit. neil: Yeah, smart ass.");
-  } else if (commandName.startsWith("!voices")) {
-    client.say(target, "Available voices: david, neil, woman. Default voice -> woman.");
+  } else if (commandName === "!help") {
+    client.say(target, "Maximum message length is 255 characters. Example  --  !tts steven: Fuck you! david: Ah, fuck you leather man.");
+  } else if (commandName === "!voices") {
+    client.say(target, "Available voices: david, neil, steven, woman.\n Default voice -> woman.");
   }
 }
 
