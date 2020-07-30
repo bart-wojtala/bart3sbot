@@ -48,3 +48,14 @@ function onMessageHandler (target, context, msg, self) {
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
 }
+
+function sendFollowAlert() {
+  client.say("bart3s", 'If you like the channel, remember to follow <3');
+}
+
+function sendCommandsAlert() {
+  client.say("bart3s", "Available commands: !tts !help !voice !emotes");
+}
+
+setInterval(sendCommandsAlert, 2 * 60 * 1000);
+setInterval(sendFollowAlert, 2.5 * 60 * 1001);
