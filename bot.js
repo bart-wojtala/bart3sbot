@@ -57,5 +57,5 @@ function sendCommandsAlert() {
   client.say("bart3s", "Available commands: !tts !help !voices !emotes");
 }
 
-setInterval(sendCommandsAlert, 2 * 60 * 1000);
-setInterval(sendFollowAlert, 2.5 * 60 * 1001);
+setInterval(sendCommandsAlert, 1.5 * 60 * 1000);
+setInterval(sendFollowAlert, 2 * 60 * 1001);
