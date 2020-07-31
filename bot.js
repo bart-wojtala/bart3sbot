@@ -24,21 +24,25 @@ function onMessageHandler (target, context, msg, self) {
 
   const commandName = msg.trim();
 
-  if (commandName.startsWith("!tts ")) {
+  if (commandName.startsWith("!tts")) {
     name = context['display-name']
     message = commandName.substring(5)
     messageLength = message.length
-    if (messageLength > 255) {
-      client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+    if (commandName.length < 6) {
+      client.say(target, `${name} wrong command usage! Type !help to get instructions.`);
     } else {
-      client.say(target, `${name} your message is added to the queue.`);
-      username = context.username
-      socket.emit('message', {username, message});
-    }
+      if (messageLength > 255) {
+        client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+      } else {
+        client.say(target, `${name} your message is added to the queue.`);
+        username = context.username
+        socket.emit('message', {username, message});
+      }
+    } 
   } else if (commandName === "!help") {
-    client.say(target, "Maximum message length is 255 characters. Example  --  !tts stephen: Fuck you! david: Ah, fuck you leather man.");
+    client.say(target, "Maximum message length is 255 characters. Example  ->  !tts stephen: Fuck you! david: Ah, fuck you leather man.");
   } else if (commandName === "!voices") {
-    client.say(target, "Available voices: david, neil, stephen, woman. Default voice -> woman.");
+    client.say(target, "Available voices: david, neil, stephen, woman. Default voice  ->  woman.");
   } else if (commandName === "!emotes") {
     client.say(target, "BTTV emotes: GachiPls Clap WAYTOODANK gachiBASS gachiHYPER TeaTime EZ PepegaAim DonaldPls pepeD catJAM SkeletonPls ppOverheat ModTime billyReady");
     client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega Pepepains REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
