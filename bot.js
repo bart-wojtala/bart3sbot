@@ -46,7 +46,7 @@ function onMessageHandler (target, context, msg, self) {
   } else if (commandName === "!bttv") {
     client.say(target, "BTTV emotes: GachiPls Clap WAYTOODANK gachiBASS gachiHYPER TeaTime EZ PepegaAim DonaldPls pepeD catJAM SkeletonPls ppOverheat ModTime billyReady");
   } else if (commandName === "!ffz") {
-    client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega Pepepains REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
+    client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega KKurwa REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
   }
 }
 
