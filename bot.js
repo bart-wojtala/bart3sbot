@@ -42,7 +42,7 @@ function onMessageHandler (target, context, msg, self) {
   } else if (commandName === "!help") {
     client.say(target, "Maximum message length is 255 characters. Example  ->  !tts stephen: Fuck you! david: Ah, fuck you leather man.");
   } else if (commandName === "!voices") {
-    client.say(target, "Available voices: david, neil, stephen, woman. Default voice  ->  woman.");
+    client.say(target, "Available voices: david, neil, stephen, woman, satan, voicemail, darthvader. Default voice  ->  woman.");
   } else if (commandName === "!bttv") {
     client.say(target, "BTTV emotes: GachiPls Clap WAYTOODANK gachiBASS gachiHYPER TeaTime EZ PepegaAim DonaldPls pepeD catJAM SkeletonPls ppOverheat ModTime billyReady");
   } else if (commandName === "!ffz") {
