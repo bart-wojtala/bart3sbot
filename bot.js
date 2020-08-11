@@ -26,11 +26,11 @@ function onMessageHandler (target, context, msg, self) {
 
   if (commandName.startsWith("!tts")) {
     name = context['display-name']
-    message = commandName.substring(5)
-    messageLength = message.length
     if (commandName.length < 6) {
       client.say(target, `${name} wrong command usage! Type !help to get instructions.`);
     } else {
+      message = commandName.substring(5)
+      messageLength = message.length
       if (messageLength > 255) {
         client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
       } else {
