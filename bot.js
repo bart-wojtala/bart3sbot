@@ -2,14 +2,16 @@ var io = require("socket.io-client")
 var socket = io.connect("http://localhost:3000");
 
 const tmi = require('tmi.js');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const opts = {
   identity: {
-    username: 'bart3sbot',
-    password: 'oauth:lm3ffflgrzrhibyf8zlmkixzip0ink'
+    username: process.env.BOT_USERNAME,
+    password: process.env.BOT_TOKEN
   },
   channels: [
-    'bart3s'
+    process.env.CHANNEL_NAME
   ]
 };
 
