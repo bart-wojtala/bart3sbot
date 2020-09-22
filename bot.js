@@ -24,6 +24,7 @@ client.connect();
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; }
 
+  messageTime = new Date().toLocaleTimeString();
   const commandName = msg.trim();
 
   if (commandName.startsWith("!tts")) {
@@ -38,7 +39,7 @@ function onMessageHandler (target, context, msg, self) {
       } else {
         client.say(target, `${name} your message is added to the queue.`);
         username = context.username
-        socket.emit('message', {username, message});
+        socket.emit('message', {username, message, messageTime});
       }
     } 
   } else if (commandName === "!help") {

@@ -15,7 +15,8 @@ io.on('connection', (socket) => {
   socket.on('message', (data) => {
     socket.broadcast.emit('event', {
       username: data['username'],
-      message: data['message']
+      message: data['message'],
+      messageTime: data['messageTime']
     });
   });
 });
