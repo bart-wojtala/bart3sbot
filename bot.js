@@ -21,7 +21,7 @@ client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
 client.connect();
 
-function onMessageHandler (target, context, msg, self) {
+function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
 
   messageTime = new Date().toLocaleTimeString();
@@ -39,9 +39,9 @@ function onMessageHandler (target, context, msg, self) {
       } else {
         client.say(target, `${name} your message is added to the queue.`);
         username = context.username
-        socket.emit('message', {username, message, messageTime});
+        socket.emit('message', { username, message, messageTime });
       }
-    } 
+    }
   } else if (commandName === "!help") {
     client.say(target, "Maximum message length is 255 characters. Example  ->  !tts stephen: Fuck you! david: Ah, fuck you leather man.");
   } else if (commandName === "!voices") {
@@ -53,7 +53,7 @@ function onMessageHandler (target, context, msg, self) {
   }
 }
 
-function onConnectedHandler (addr, port) {
+function onConnectedHandler(addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
 }
 
