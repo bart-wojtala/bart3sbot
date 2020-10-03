@@ -21,25 +21,38 @@ client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
 client.connect();
 
+var userTimestampMap = new Map()
+const ttsTimeout = 20000
+
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
 
-  messageTime = new Date().toLocaleTimeString();
+  messageTime = new Date();
+  timestamp = messageTime.getTime();
   const commandName = msg.trim();
 
   if (commandName.startsWith("!tts")) {
     name = context['display-name']
-    if (commandName.length < 6) {
-      client.say(target, `${name} wrong command usage! Type !help to get instructions.`);
+    lastUserTimestamp = userTimestampMap.get(name);
+    timeDifference = timestamp - lastUserTimestamp;
+
+    if (lastUserTimestamp && timeDifference < ttsTimeout) {
+      client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to send next TTS message!`);
     } else {
-      message = commandName.substring(5)
-      messageLength = message.length
-      if (messageLength > 255) {
-        client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+      userTimestampMap.set(name, timestamp);
+      if (commandName.length < 6) {
+        client.say(target, `${name} wrong command usage! Type !help to get instructions.`);
       } else {
-        client.say(target, `${name} your message is added to the queue.`);
-        username = context.username
-        socket.emit('message', { username, message, messageTime });
+        message = commandName.substring(5)
+        messageLength = message.length
+        if (messageLength > 255) {
+          client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+        } else {
+          client.say(target, `${name} your message is added to the queue.`);
+          username = context.username
+          formattedMessageTime = messageTime.toLocaleTimeString();
+          socket.emit('message', { username, message, formattedMessageTime });
+        }
       }
     }
   } else if (commandName === "!help") {
