@@ -50,8 +50,8 @@ function onMessageHandler(target, context, msg, self) {
         } else {
           client.say(target, `${name} your message is added to the queue.`);
           username = context.username
-          formattedMessageTime = messageTime.toLocaleTimeString();
-          socket.emit('message', { username, message, formattedMessageTime });
+          messageTime = messageTime.toLocaleTimeString();
+          socket.emit('message', { username, message, messageTime });
         }
       }
     }
