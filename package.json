@@ -23,6 +23,7 @@
     "tmi.js": "^1.5.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "forever": "^3.0.4"
   }
 }
