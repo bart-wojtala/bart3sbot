@@ -60,6 +60,10 @@ function onMessageHandler(target, context, msg, self) {
     client.say(target, "BTTV emotes: GachiPls Clap WAYTOODANK gachiBASS gachiHYPER TeaTime EZ PepegaAim DonaldPls pepeD catJAM SkeletonPls ppOverheat ModTime billyReady");
   } else if (commandName === "!ffz") {
     client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega pOg REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
+  } else if (commandName === "!help") {
+    client.say(target, `${name} available commands: !tts !bttv !ffz !help`);
+  } else if (commandName.startsWith("!")) {
+    client.say(target, `${name} command not recognized! Use !help to check available commands.`);
   }
 }
 
@@ -71,9 +75,4 @@ function sendFollowAlert() {
   client.say(opts.channels[0], 'If you like the channel, remember to follow <3');
 }
 
-function sendCommandsAlert() {
-  client.say(opts.channels[0], "Available commands: !tts !bttv !ffz");
-}
-
-setInterval(sendCommandsAlert, 2 * 60 * 1000);
 setInterval(sendFollowAlert, 5 * 60 * 1000);
