@@ -51,7 +51,8 @@ function onMessageHandler(target, context, msg, self) {
           client.say(target, `${name} your message is added to the queue.`);
           username = context.username
           messageTime = messageTime.toLocaleTimeString();
-          socket.emit('message', { username, message, messageTime });
+          messageId = context.id
+          socket.emit('message', { messageId, username, message, messageTime });
         }
       }
     }

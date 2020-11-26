@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', (socket) => {
   socket.on('message', (data) => {
     socket.broadcast.emit('event', {
+      messageId: data['messageId'],
       username: data['username'],
       message: data['message'],
       messageTime: data['messageTime']
