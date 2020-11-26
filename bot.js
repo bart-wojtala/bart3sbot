@@ -68,11 +68,11 @@ function onConnectedHandler(addr, port) {
 }
 
 function sendFollowAlert() {
-  client.say("bart3s", 'If you like the channel, remember to follow <3');
+  client.say(opts.channels[0], 'If you like the channel, remember to follow <3');
 }
 
 function sendCommandsAlert() {
-  client.say("bart3s", "Available commands: !tts !bttv !ffz");
+  client.say(opts.channels[0], "Available commands: !tts !bttv !ffz");
 }
 
 setInterval(sendCommandsAlert, 2 * 60 * 1000);
