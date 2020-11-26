@@ -41,7 +41,7 @@ function onMessageHandler(target, context, msg, self) {
     } else {
       userTimestampMap.set(name, timestamp);
       if (commandName.length < 6) {
-        client.say(target, `${name} wrong command usage! Type !help to get instructions.`);
+        client.say(target, `${name} wrong command usage! Check instructions on a panel below the stream window.`);
       } else {
         message = commandName.substring(5)
         messageLength = message.length
