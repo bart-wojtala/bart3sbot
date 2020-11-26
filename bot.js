@@ -56,14 +56,10 @@ function onMessageHandler(target, context, msg, self) {
         }
       }
     }
-  } else if (commandName === "!help") {
-    client.say(target, "Maximum message length is 255 characters. Example  ->  !tts stephen: Fuck you! david: Ah, fuck you leather man.");
-  } else if (commandName === "!voices") {
-    client.say(target, "Available voices: david, neil, stephen, woman, satan, voicemail, darthvader, trump, gandalf. Default voice  ->  woman.");
   } else if (commandName === "!bttv") {
     client.say(target, "BTTV emotes: GachiPls Clap WAYTOODANK gachiBASS gachiHYPER TeaTime EZ PepegaAim DonaldPls pepeD catJAM SkeletonPls ppOverheat ModTime billyReady");
   } else if (commandName === "!ffz") {
-    client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega KKurwa REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
+    client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega pOg REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
   }
 }
 
@@ -76,7 +72,7 @@ function sendFollowAlert() {
 }
 
 function sendCommandsAlert() {
-  client.say("bart3s", "Available commands: !tts !help !voices !bttv !ffz");
+  client.say("bart3s", "Available commands: !tts !bttv !ffz");
 }
 
 setInterval(sendCommandsAlert, 2 * 60 * 1000);
