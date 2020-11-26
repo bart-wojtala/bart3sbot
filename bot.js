@@ -39,7 +39,6 @@ function onMessageHandler(target, context, msg, self) {
     if (lastUserTimestamp && timeDifference < ttsTimeout) {
       client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to send next TTS message!`);
     } else {
-      userTimestampMap.set(name, timestamp);
       if (commandName.length < 6) {
         client.say(target, `${name} wrong command usage! Check instructions on a panel below the stream window.`);
       } else {
@@ -53,6 +52,7 @@ function onMessageHandler(target, context, msg, self) {
           messageTime = messageTime.toLocaleTimeString();
           messageId = context.id
           socket.emit('message', { messageId, username, message, messageTime });
+          userTimestampMap.set(name, timestamp);
         }
       }
     }
