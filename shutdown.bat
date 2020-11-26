@@ -1,0 +1,1 @@
+forever stop bot.js && forever stop server.js
