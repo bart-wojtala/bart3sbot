@@ -12,7 +12,11 @@ const opts = {
   },
   channels: [
     process.env.CHANNEL_NAME
-  ]
+  ],
+  emotes: {
+    bttv: process.env.EMOTES_BTTV,
+    ffz: process.env.EMOTES_FFZ
+  }
 };
 
 const client = new tmi.client(opts);
@@ -57,9 +61,9 @@ function onMessageHandler(target, context, msg, self) {
       }
     }
   } else if (commandName === "!bttv") {
-    client.say(target, "BTTV emotes: GachiPls Clap WAYTOODANK gachiBASS gachiHYPER TeaTime EZ PepegaAim DonaldPls pepeD catJAM SkeletonPls ppOverheat ModTime billyReady");
+    client.say(target, "BTTV emotes: " + opts.emotes.bttv);
   } else if (commandName === "!ffz") {
-    client.say(target, "FFZ emotes: 5Head AYAYA FeelsDankMan FeelsOkayMan FeelsStrongMan HYPERDANSGAME HandsUp KKonaW LULW MEGALUL MaN OMEGALUL PagChomp PepeHands PepeLaugh Pepega pOg REEeee Sadge VaN WeirdChamp gachiGASM monkaOMEGA monkaW monkaHmm");
+    client.say(target, "FFZ emotes: " + opts.emotes.ffz);
   } else if (commandName === "!help") {
     client.say(target, `${name} available commands: !tts !bttv !ffz !help`);
   } else if (commandName.startsWith("!")) {
