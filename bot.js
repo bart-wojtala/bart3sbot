@@ -65,7 +65,7 @@ function onMessageHandler(target, context, msg, self) {
   } else if (commandName === "!ffz") {
     client.say(target, "FFZ emotes: " + opts.emotes.ffz);
   } else if (commandName === "!help") {
-    client.say(target, `${name} available commands: !tts !bttv !ffz !help`);
+    client.say(target, `${name} available commands: !tts !bttv !ffz !help. TTS instructions are available on the panel below the stream window.`);
   } else if (commandName.startsWith("!")) {
     client.say(target, `${name} command not recognized! Use !help to check available commands.`);
   }
