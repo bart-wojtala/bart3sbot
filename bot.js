@@ -37,26 +37,28 @@ function onMessageHandler(target, context, msg, self) {
 
   if (commandName.startsWith("!tts")) {
     name = context['display-name']
-    lastUserTimestamp = userTimestampMap.get(name);
-    timeDifference = timestamp - lastUserTimestamp;
+    if (name) {
+      lastUserTimestamp = userTimestampMap.get(name);
+      timeDifference = timestamp - lastUserTimestamp;
 
-    if (lastUserTimestamp && timeDifference < ttsTimeout) {
-      client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to send next TTS message!`);
-    } else {
-      if (commandName.length < 6) {
-        client.say(target, `${name} wrong command usage! Check instructions on a panel below the stream window.`);
+      if (lastUserTimestamp && timeDifference < ttsTimeout) {
+        client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to send next TTS message!`);
       } else {
-        message = commandName.substring(5)
-        messageLength = message.length
-        if (messageLength > 255) {
-          client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+        if (commandName.length < 6) {
+          client.say(target, `${name} wrong command usage! Check instructions on a panel below the stream window.`);
         } else {
-          client.say(target, `${name} your message is added to the queue.`);
-          username = context.username
-          messageTime = messageTime.toLocaleTimeString();
-          messageId = context.id
-          socket.emit('message', { messageId, username, message, messageTime });
-          userTimestampMap.set(name, timestamp);
+          message = commandName.substring(5)
+          messageLength = message.length
+          if (messageLength > 255) {
+            client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
+          } else {
+            client.say(target, `${name} your message is added to the queue.`);
+            username = context.username
+            messageTime = messageTime.toLocaleTimeString();
+            messageId = context.id
+            socket.emit('message', { messageId, username, message, messageTime });
+            userTimestampMap.set(name, timestamp);
+          }
         }
       }
     }
