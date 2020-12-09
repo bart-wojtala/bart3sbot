@@ -81,4 +81,4 @@ function sendFollowAlert() {
   client.say(opts.channels[0], 'If you like the channel, remember to follow <3');
 }
 
-setInterval(sendFollowAlert, 5 * 60 * 1000);
+// setInterval(sendFollowAlert, 5 * 60 * 1000);
