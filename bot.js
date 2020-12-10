@@ -16,6 +16,9 @@ const opts = {
   emotes: {
     bttv: process.env.EMOTES_BTTV,
     ffz: process.env.EMOTES_FFZ
+  },
+  tts: {
+    timeout: process.env.TTS_TIMEOUT
   }
 };
 
@@ -26,7 +29,7 @@ client.on('connected', onConnectedHandler);
 client.connect();
 
 var userTimestampMap = new Map()
-const ttsTimeout = 20000
+const ttsTimeout = opts.tts.timeout
 
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
