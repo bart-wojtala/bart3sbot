@@ -79,9 +79,3 @@ function onMessageHandler(target, context, msg, self) {
 function onConnectedHandler(addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
 }
-
-function sendFollowAlert() {
-  client.say(opts.channels[0], 'If you like the channel, remember to follow <3');
-}
-
-// setInterval(sendFollowAlert, 5 * 60 * 1000);
