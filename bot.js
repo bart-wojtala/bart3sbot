@@ -96,3 +96,13 @@ function onMessageHandler(target, context, msg, self) {
 function onConnectedHandler(addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
 }
+
+function sendTTSAlert() {
+  message = `david: Quick reminder. You can use text to speech with many different voices on the channel. Use command help to get more information.`
+  messageTime = messageTime.toLocaleTimeString();
+  messageId = context.id
+  username = opts.identity.username
+  socket.emit('message', { messageId, username, message, messageTime });
+}
+
+setInterval(sendTTSAlert, 15 * 60 * 1000);
