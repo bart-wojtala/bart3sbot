@@ -99,9 +99,9 @@ function onConnectedHandler(addr, port) {
 }
 
 function sendTTSAlert() {
-  message = `david: Quick reminder. You can use text to speech with many different voices on the channel. Use command help to get more information.`
-  messageTime = messageTime.toLocaleTimeString();
-  messageId = context.id
+  message = 'msdavid: Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test, to play a test message, or use a command exclamation mark t t s, to check it yourself!'
+  messageTime = new Date().toLocaleTimeString();
+  messageId = messageTime
   username = opts.identity.username
   socket.emit('message', { messageId, username, message, messageTime });
 }
