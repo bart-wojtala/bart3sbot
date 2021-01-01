@@ -18,6 +18,7 @@ const opts = {
     ffz: process.env.EMOTES_FFZ
   },
   tts: {
+    voices: ['woman:', 'david:', 'neil:', 'stephen:', 'satan:', 'voicemail:', 'vader:', 'trump:', 'gandalf:', 'keanu:', 'mszira:', 'msdavid:'],
     timeout: process.env.TTS_TIMEOUT
   }
 };
@@ -37,9 +38,9 @@ function onMessageHandler(target, context, msg, self) {
   messageTime = new Date();
   timestamp = messageTime.getTime();
   const commandName = msg.trim();
+  name = context['display-name']
 
   if (commandName.startsWith("!tts")) {
-    name = context['display-name']
     if (name) {
       lastUserTimestamp = userTimestampMap.get(name);
       timeDifference = timestamp - lastUserTimestamp;
@@ -70,7 +71,23 @@ function onMessageHandler(target, context, msg, self) {
   } else if (commandName === "!ffz") {
     client.say(target, "FFZ emotes: " + opts.emotes.ffz);
   } else if (commandName === "!help") {
-    client.say(target, `${name} available commands: !tts !bttv !ffz !help. TTS instructions are available on the panel below the stream window.`);
+    client.say(target, `${name} available commands: !tts !bttv !ffz !help !test. TTS instructions are available on the panel below the stream window. You can also use command !test to generate a test message with random voice.`);
+  } else if (commandName === "!test") {
+    lastUserTimestamp = userTimestampMap.get(name);
+    timeDifference = timestamp - lastUserTimestamp;
+
+    if (lastUserTimestamp && timeDifference < ttsTimeout) {
+      client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to test TTS!`);
+    } else {
+      var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
+      message = `${randomVoice} This is a test. 1, 2 and 3.`
+      messageTime = messageTime.toLocaleTimeString();
+      messageId = context.id
+      username = opts.identity.username
+      socket.emit('message', { messageId, username, message, messageTime });
+      userTimestampMap.set(name, timestamp);
+      client.say(target, message);
+    }
   } else if (commandName.startsWith("!")) {
     client.say(target, `${name} command not recognized! Use !help to check available commands.`);
   }
