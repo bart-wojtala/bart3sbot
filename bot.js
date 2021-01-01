@@ -86,7 +86,8 @@ function onMessageHandler(target, context, msg, self) {
       username = opts.identity.username
       socket.emit('message', { messageId, username, message, messageTime });
       userTimestampMap.set(name, timestamp);
-      client.say(target, message);
+      client.say(target, '!tts ' + message);
+      client.say(target, `MrDestructoid I added this message to the queue.`);
     }
   } else if (commandName.startsWith("!")) {
     client.say(target, `${name} command not recognized! Use !help to check available commands.`);
