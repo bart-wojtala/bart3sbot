@@ -77,7 +77,7 @@ function onMessageHandler(target, context, msg, self) {
     timeDifference = timestamp - lastUserTimestamp;
 
     if (lastUserTimestamp && timeDifference < ttsTimeout) {
-      client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to test TTS!`);
+      client.say(target, `MrDestructoid ${name} just let me rest for ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds...`);
     } else {
       var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
       message = `${randomVoice} This is a test. 1, 2 and 3.`
