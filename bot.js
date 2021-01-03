@@ -77,7 +77,7 @@ function onMessageHandler(target, context, msg, self) {
     timeDifference = timestamp - lastUserTimestamp;
 
     if (lastUserTimestamp && timeDifference < ttsTimeout) {
-      client.say(target, `MrDestructoid ${name} just let me rest for ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds...`);
+      client.say(target, `${name} just let me rest for ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds...`);
     } else {
       var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
       message = `${randomVoice} This is a test. 1, 2 and 3.`
@@ -87,10 +87,10 @@ function onMessageHandler(target, context, msg, self) {
       socket.emit('message', { messageId, username, message, messageTime });
       userTimestampMap.set(name, timestamp);
       client.say(target, '!tts ' + message);
-      client.say(target, `MrDestructoid I added this message to the queue.`);
+      client.say(target, `I added this message to the queue.`);
     }
   } else if (commandName.startsWith("!")) {
-    client.say(target, `${name} command not recognized! Use !help to check available commands.`);
+    client.say(target, `${name} command not recognized! bart3sbot sends a list of available commands every 1 minute.`);
   }
 }
 
