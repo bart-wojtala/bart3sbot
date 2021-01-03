@@ -107,7 +107,7 @@ function sendTTSAlert() {
 }
 
 function sendCommandsAlert() {
-  client.say(target, `MrDestructoid Available bart3sbot commands: !bttv !ffz !help !test !tts`);
+  client.say(opts.channels[0], `Available bart3sbot commands: !bttv !ffz !help !test !tts`);
 }
 
 setInterval(sendTTSAlert, 15 * 60 * 1000);
