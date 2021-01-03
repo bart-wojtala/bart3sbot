@@ -71,7 +71,7 @@ function onMessageHandler(target, context, msg, self) {
   } else if (commandName === "!ffz") {
     client.say(target, "FFZ emotes: " + opts.emotes.ffz);
   } else if (commandName === "!help") {
-    client.say(target, `${name} available commands: !tts !bttv !ffz !help !test. TTS instructions are available on the panel below the stream window. You can also use command !test to generate a test message with random voice.`);
+    client.say(target, `${name} TTS instructions are available on the panel below the stream. You can also use command !test to generate a test message using random voice.`);
   } else if (commandName === "!test") {
     lastUserTimestamp = userTimestampMap.get(name);
     timeDifference = timestamp - lastUserTimestamp;
@@ -106,4 +106,9 @@ function sendTTSAlert() {
   socket.emit('message', { messageId, username, message, messageTime });
 }
 
+function sendCommandsAlert() {
+  client.say(target, `MrDestructoid Available bart3sbot commands: !bttv !ffz !help !test !tts`);
+}
+
 setInterval(sendTTSAlert, 15 * 60 * 1000);
+setInterval(sendCommandsAlert, 1 * 60 * 1000);
