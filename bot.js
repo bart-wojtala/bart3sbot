@@ -19,7 +19,10 @@ const opts = {
   },
   tts: {
     voices: ['woman:', 'david:', 'neil:', 'stephen:', 'satan:', 'voicemail:', 'vader:', 'trump:', 'gandalf:', 'keanu:', 'mszira:', 'msdavid:'],
-    timeout: process.env.TTS_TIMEOUT
+    timeout: process.env.TTS_TIMEOUT_SECONDS
+  },
+  advertisement: {
+    timeout: process.env.AD_TIMEOUT_MINUTES
   }
 };
 
@@ -30,7 +33,7 @@ client.on('connected', onConnectedHandler);
 client.connect();
 
 var userTimestampMap = new Map()
-const ttsTimeout = opts.tts.timeout
+const ttsTimeout = opts.tts.timeout * 1000
 
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
@@ -106,4 +109,4 @@ function sendTTSAlert() {
   socket.emit('message', { messageId, username, message, messageTime });
 }
 
-setInterval(sendTTSAlert, 15 * 60 * 1000);
+setInterval(sendTTSAlert, opts.advertisement.timeout * 60 * 1000);
