@@ -106,9 +106,4 @@ function sendTTSAlert() {
   socket.emit('message', { messageId, username, message, messageTime });
 }
 
-function sendCommandsAlert() {
-  client.say(opts.channels[0], `Available bart3sbot commands: !bttv !ffz !help !test !tts`);
-}
-
 setInterval(sendTTSAlert, 15 * 60 * 1000);
-setInterval(sendCommandsAlert, 1 * 60 * 1000);
