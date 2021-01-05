@@ -93,7 +93,7 @@ function onMessageHandler(target, context, msg, self) {
       client.say(target, `I added this message to the queue.`);
     }
   } else if (commandName.startsWith("!")) {
-    client.say(target, `${name} command not recognized! bart3sbot sends a list of available commands every 1 minute.`);
+    client.say(target, `${name} command not recognized! List of available commands is available on the panel below the stream.`);
   }
 }
 
