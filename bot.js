@@ -92,8 +92,6 @@ function onMessageHandler(target, context, msg, self) {
       client.say(target, '!tts ' + message);
       client.say(target, `I added this message to the queue.`);
     }
-  } else if (commandName.startsWith("!")) {
-    client.say(target, `${name} command not recognized! List of available commands is available on the panel below the stream.`);
   }
 }
 
