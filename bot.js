@@ -18,7 +18,7 @@ const opts = {
     ffz: process.env.EMOTES_FFZ
   },
   tts: {
-    voices: ['woman:', 'david:', 'neil:', 'stephen:', 'satan:', 'voicemail:', 'vader:', 'trump:', 'gandalf:', 'keanu:', 'mszira:', 'msdavid:', 'samuel:'],
+    voices: ['woman:', 'david:', 'neil:', 'stephen:', 'satan:', 'voicemail:', 'vader:', 'trump:', 'gandalf:', 'keanu:', 'mszira:', 'msdavid:', 'samuel:', 'hal:'],
     timeout: process.env.TTS_TIMEOUT_SECONDS
   },
   advertisement: {
