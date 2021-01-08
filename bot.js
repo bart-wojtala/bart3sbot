@@ -100,7 +100,8 @@ function onConnectedHandler(addr, port) {
 }
 
 function sendTTSAlert() {
-  message = 'msdavid: Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test, to play a test message, or use a command exclamation mark t t s, to check it yourself!'
+  var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
+  message = `${randomVoice} Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test to play a test message, or use a command exclamation mark tee tee ess to check it yourself!`
   messageTime = new Date().toLocaleTimeString();
   messageId = messageTime
   username = opts.identity.username
