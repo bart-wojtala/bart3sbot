@@ -101,7 +101,7 @@ function onConnectedHandler(addr, port) {
 
 function sendTTSAlert() {
   var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
-  message = `${randomVoice} Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test to play a test message, or use a command exclamation mark tee tee ess to check it yourself!`
+  message = `${randomVoice} Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test to play a test message, or use a command exclamation mark tts to check it yourself!`
   messageTime = new Date().toLocaleTimeString();
   messageId = messageTime
   username = opts.identity.username
