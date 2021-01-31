@@ -18,7 +18,7 @@ const opts = {
     ffz: process.env.EMOTES_FFZ
   },
   tts: {
-    voices: ['david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:'],
+    voices: ['carolla:', 'daria:', 'david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'nameless:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:'],
     timeout: process.env.TTS_TIMEOUT_SECONDS
   },
   advertisement: {
