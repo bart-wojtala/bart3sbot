@@ -18,6 +18,7 @@ const opts = {
     ffz: process.env.EMOTES_FFZ
   },
   tts: {
+    admin: 'bart3s',
     voices: ['carolla:', 'daria:', 'david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'nameless:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:'],
     timeout: process.env.TTS_TIMEOUT_SECONDS
   },
@@ -33,7 +34,8 @@ client.on('connected', onConnectedHandler);
 client.connect();
 
 var userTimestampMap = new Map()
-const ttsTimeout = opts.tts.timeout * 1000
+var ttsTimeout = opts.tts.timeout * 1000
+const adminName = opts.tts.admin
 
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
@@ -69,6 +71,10 @@ function onMessageHandler(target, context, msg, self) {
         }
       }
     }
+  } else if (commandName.startsWith("!set ttstimeout") && name === adminName) {
+    newTimeout = commandName.substring(16);
+    ttsTimeout = parseInt(newTimeout) * 1000;
+    client.say(target, "New TTS timeout: " + newTimeout + " seconds.");
   } else if (commandName === "!bttv") {
     client.say(target, "BTTV emotes: " + opts.emotes.bttv);
   } else if (commandName === "!ffz") {
