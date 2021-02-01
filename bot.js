@@ -61,12 +61,9 @@ function onMessageHandler(target, context, msg, self) {
           if (messageLength > 255) {
             client.say(target, `${name} message length: ${messageLength} exceeds the character limit!`);
           } else {
-            client.say(target, `${name} your message is added to the queue.`);
-            username = context.username
-            messageTime = messageTime.toLocaleTimeString();
-            messageId = context.id
-            socket.emit('message', { messageId, username, message, messageTime });
+            sendTTSMessage(context.id, context.username, message, messageTime.toLocaleTimeString());
             userTimestampMap.set(name, timestamp);
+            client.say(target, `${name} your message is added to the queue.`);
           }
         }
       }
@@ -90,15 +87,16 @@ function onMessageHandler(target, context, msg, self) {
     } else {
       var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
       message = `${randomVoice} This is a test. 1, 2 and 3.`
-      messageTime = messageTime.toLocaleTimeString();
-      messageId = context.id
-      username = opts.identity.username
-      socket.emit('message', { messageId, username, message, messageTime });
+      sendTTSMessage(context.id, opts.identity.username, message, messageTime.toLocaleTimeString());
       userTimestampMap.set(name, timestamp);
       client.say(target, '!tts ' + message);
       client.say(target, `I added this message to the queue.`);
     }
   }
+}
+
+function sendTTSMessage(messageId, username, message, messageTime) {
+  socket.emit('message', { messageId, username, message, messageTime });
 }
 
 function onConnectedHandler(addr, port) {
@@ -109,9 +107,7 @@ function sendTTSAlert() {
   var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
   message = `${randomVoice} Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test to play a test message, or use a command exclamation mark tts to check it yourself!`
   messageTime = new Date().toLocaleTimeString();
-  messageId = messageTime
-  username = opts.identity.username
-  socket.emit('message', { messageId, username, message, messageTime });
+  sendTTSMessage(messageTime, opts.identity.username, message, messageTime);
 }
 
 setInterval(sendTTSAlert, opts.advertisement.timeout * 60 * 1000);
