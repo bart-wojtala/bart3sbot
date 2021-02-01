@@ -50,7 +50,7 @@ function onMessageHandler(target, context, msg, self) {
       lastUserTimestamp = userTimestampMap.get(name);
       timeDifference = timestamp - lastUserTimestamp;
 
-      if (lastUserTimestamp && timeDifference < ttsTimeout) {
+      if (name !== adminName && lastUserTimestamp && timeDifference < ttsTimeout) {
         client.say(target, `${name} you have to wait ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds to send next TTS message!`);
       } else {
         if (commandName.length < 6) {
@@ -82,7 +82,7 @@ function onMessageHandler(target, context, msg, self) {
     lastUserTimestamp = userTimestampMap.get(name);
     timeDifference = timestamp - lastUserTimestamp;
 
-    if (lastUserTimestamp && timeDifference < ttsTimeout) {
+    if (name !== adminName && lastUserTimestamp && timeDifference < ttsTimeout) {
       client.say(target, `${name} just let me rest for ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds...`);
     } else {
       var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
