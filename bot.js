@@ -1,11 +1,12 @@
-var io = require('socket.io-client')
-var socket = io.connect('http://localhost:3000');
-
 const tmi = require('tmi.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const opts = {
+  server: {
+    host: process.env.SERVER_HOST,
+    port: process.env.SERVER_PORT
+  },
   identity: {
     username: process.env.BOT_USERNAME,
     password: process.env.BOT_TOKEN
@@ -24,6 +25,8 @@ const opts = {
   }
 };
 
+var io = require('socket.io-client')
+var socket = io.connect(`${opts.server.host}:${opts.server.port}`);
 const client = new tmi.client(opts);
 
 client.on('message', onMessageHandler);
