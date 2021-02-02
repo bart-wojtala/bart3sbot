@@ -40,10 +40,10 @@ const adminName = opts.tts.admin;
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
 
-  const messageTime = new Date();
-  const timestamp = messageTime.getTime();
+  messageTime = new Date();
+  timestamp = messageTime.getTime();
   const commandName = msg.trim();
-  const displayName = context['display-name'];
+  displayName = context['display-name'];
 
   if (commandName.startsWith('!tts')) {
     if (displayName) {
