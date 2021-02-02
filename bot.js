@@ -14,7 +14,7 @@ const opts = {
     process.env.CHANNEL_NAME
   ],
   tts: {
-    admin: 'bart3s',
+    admin: process.env.ADMIN_NAME,
     voices: ['carolla:', 'daria:', 'david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'nameless:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:'],
     timeout: process.env.TTS_TIMEOUT_SECONDS
   },
