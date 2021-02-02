@@ -13,10 +13,6 @@ const opts = {
   channels: [
     process.env.CHANNEL_NAME
   ],
-  emotes: {
-    bttv: process.env.EMOTES_BTTV,
-    ffz: process.env.EMOTES_FFZ
-  },
   tts: {
     admin: 'bart3s',
     voices: ['carolla:', 'daria:', 'david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'nameless:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:'],
@@ -72,10 +68,6 @@ function onMessageHandler(target, context, msg, self) {
     newTimeout = commandName.substring(16);
     ttsTimeout = parseInt(newTimeout) * 1000;
     client.say(target, "New TTS timeout: " + newTimeout + " seconds.");
-  } else if (commandName === "!bttv") {
-    client.say(target, "BTTV emotes: " + opts.emotes.bttv);
-  } else if (commandName === "!ffz") {
-    client.say(target, "FFZ emotes: " + opts.emotes.ffz);
   } else if (commandName === "!help") {
     client.say(target, `${name} TTS instructions are available on the panel below the stream. You can also use command !test to generate a test message using random voice.`);
   } else if (commandName === "!test") {
