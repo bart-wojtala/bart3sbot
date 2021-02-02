@@ -1,5 +1,5 @@
-var io = require("socket.io-client")
-var socket = io.connect("http://localhost:3000");
+var io = require('socket.io-client')
+var socket = io.connect('http://localhost:3000');
 
 const tmi = require('tmi.js');
 const dotenv = require('dotenv');
@@ -15,10 +15,11 @@ const opts = {
   ],
   tts: {
     admin: process.env.ADMIN_NAME,
-    voices: ['carolla:', 'daria:', 'david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'nameless:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:'],
-    timeout: process.env.TTS_TIMEOUT_SECONDS
+    timeout: process.env.TTS_TIMEOUT_SECONDS,
+    voices: ['carolla:', 'daria:', 'david:', 'fergy:', 'gandalf:', 'glados:', 'hal:', 'hudson:', 'keanu:', 'mlpab:', 'mlpaj:', 'mlpbm:', 'mlpca:', 'mlpfy:', 'mlppp:', 'mlprd:', 'mlpry:', 'mlpsb:', 'mlpse:', 'mlpso:', 'mlpte:', 'mlpts:', 'mlpza:', 'msdavid:', 'mszira:', 'nameless:', 'neil:', 'samuel:', 'satan:', 'stephen:', 'trump:', 'vader:', 'vmail:', 'woman:']
   },
   advertisement: {
+    message: 'Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test to play a test message, or use a command exclamation mark tts to check it yourself!',
     timeout: process.env.AD_TIMEOUT_MINUTES
   }
 };
@@ -29,9 +30,9 @@ client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
 client.connect();
 
-var userTimestampMap = new Map()
-var ttsTimeout = opts.tts.timeout * 1000
-const adminName = opts.tts.admin
+var userTimestampMap = new Map();
+var ttsTimeout = opts.tts.timeout * 1000;
+const adminName = opts.tts.admin;
 
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; }
@@ -39,9 +40,9 @@ function onMessageHandler(target, context, msg, self) {
   messageTime = new Date();
   timestamp = messageTime.getTime();
   const commandName = msg.trim();
-  displayName = context['display-name']
+  displayName = context['display-name'];
 
-  if (commandName.startsWith("!tts")) {
+  if (commandName.startsWith('!tts')) {
     if (displayName) {
       lastUserTimestamp = userTimestampMap.get(displayName);
       timeDifference = timestamp - lastUserTimestamp;
@@ -52,8 +53,8 @@ function onMessageHandler(target, context, msg, self) {
         if (commandName.length < 6) {
           client.say(target, `${displayName} wrong command usage! Check instructions on a panel below the stream window.`);
         } else {
-          message = commandName.substring(5)
-          messageLength = message.length
+          message = commandName.substring(5);
+          messageLength = message.length;
           if (messageLength > 255) {
             client.say(target, `${displayName} message length: ${messageLength} exceeds the character limit!`);
           } else {
@@ -64,13 +65,13 @@ function onMessageHandler(target, context, msg, self) {
         }
       }
     }
-  } else if (commandName.startsWith("!set ttstimeout") && displayName === adminName) {
+  } else if (commandName.startsWith('!set ttstimeout') && displayName === adminName) {
     newTimeout = commandName.substring(16);
     ttsTimeout = parseInt(newTimeout) * 1000;
-    client.say(target, "New TTS timeout: " + newTimeout + " seconds.");
-  } else if (commandName === "!help") {
+    client.say(target, 'New TTS timeout: ' + newTimeout + ' seconds.');
+  } else if (commandName === '!help') {
     client.say(target, `${displayName} TTS instructions are available on the panel below the stream. You can also use command !test to generate a test message using random voice.`);
-  } else if (commandName === "!test") {
+  } else if (commandName === '!test') {
     lastUserTimestamp = userTimestampMap.get(displayName);
     timeDifference = timestamp - lastUserTimestamp;
 
@@ -78,7 +79,7 @@ function onMessageHandler(target, context, msg, self) {
       client.say(target, `${displayName} just let me rest for ${Math.round((ttsTimeout - timeDifference) / 1000)} seconds...`);
     } else {
       var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
-      message = `${randomVoice} This is a test. 1, 2 and 3.`
+      message = `${randomVoice} This is a test. 1, 2 and 3.`;
       sendTTSMessage(context.id, opts.identity.username, message, messageTime.toLocaleTimeString());
       userTimestampMap.set(displayName, timestamp);
       client.say(target, '!tts ' + message);
@@ -97,7 +98,7 @@ function onConnectedHandler(addr, port) {
 
 function sendTTSAlert() {
   var randomVoice = opts.tts.voices[Math.floor(Math.random() * opts.tts.voices.length)];
-  message = `${randomVoice} Attention Twitch chat. Did you know that you can use text to speech on this channel? Type exclamation mark test to play a test message, or use a command exclamation mark tts to check it yourself!`
+  message = `${randomVoice} ${opts.advertisement.message}`;
   messageTime = new Date().toLocaleTimeString();
   sendTTSMessage(messageTime, opts.identity.username, message, messageTime);
 }
