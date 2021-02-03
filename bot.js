@@ -59,7 +59,7 @@ function onMessageHandler(target, context, msg, self) {
           message = commandName.substring(5);
           messageLength = message.length;
           if (messageLength > 255) {
-            client.say(target, `${displayName} message length: ${messageLength} exceeds the character limit!`);
+            client.say(target, `${displayName} your message length: ${messageLength} exceeds the limit of 255 characters!`);
           } else {
             sendTTSMessage(context.id, context.username, message, messageTime.toLocaleTimeString());
             userTimestampMap.set(displayName, timestamp);
