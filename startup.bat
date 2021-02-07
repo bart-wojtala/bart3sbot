@@ -1,1 +1,1 @@
-forever start server.js && forever start bot.js
+forever start bot.js
