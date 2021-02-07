@@ -25,8 +25,19 @@ const opts = {
   }
 };
 
-var io = require('socket.io-client')
-var socket = io.connect(`${opts.server.host}:${opts.server.port}`);
+var express = require('express');
+var app = express();
+var path = require('path');
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var port = 3000;
+
+server.listen(port, () => {
+  console.log('Server listening at port %d', port);
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 const client = new tmi.client(opts);
 
 client.on('message', onMessageHandler);
@@ -92,7 +103,12 @@ function onMessageHandler(target, context, msg, self) {
 }
 
 function sendTTSMessage(messageId, username, message, messageTime) {
-  socket.emit('message', { messageId, username, message, messageTime });
+  io.emit('event', {
+    messageId: messageId,
+    username: username,
+    message: message,
+    messageTime: messageTime
+  });
 }
 
 function onConnectedHandler(addr, port) {
